@@ -1,0 +1,152 @@
+#include "student.h"
+
+Student students[100] ; 
+int countStudent = 0 ; 
+
+void addStudent () {
+
+    cout << "\n========== ADD STUDENT ==========\n" ;
+
+    cout << "Enter Student ID : " ;
+    cin >> students[countStudent].id ; 
+
+    cout << "Enter Student Name : " ;
+    cin >> students[countStudent].name ; 
+
+    cout << "Enter Student Age : " ;
+    cin >> students[countStudent].age ; 
+
+    cout << "Enter Student Course : " ;
+    cin >> students[countStudent].course ; 
+
+    countStudent++ ; 
+
+    cout << "\033[32m" ;
+    cout << "Student Added Successfully\n" ;
+    cout << "\033[0m" ;
+}
+
+void displayStudents () {
+
+    if (countStudent == 0 ) {
+        cout << "\033[31m" ;
+        cout << "No Students Found\n" ;
+        cout << "\033[0m" ;
+        return ; 
+    }
+
+    cout << "\n========== STUDENTS LIST ==========\n" ;
+
+    for (int i = 0 ; i < countStudent ; ++i) {
+
+        cout << "\nStudent Number : " << i + 1 << endl ; 
+        cout << "Student ID : " << students[i].id << endl ; 
+        cout << "Student Name : " << students[i].name << endl ; 
+        cout << "Student Age : " << students[i].age << endl ; 
+        cout << "Student Course : " << students[i].course << endl ; 
+    }
+}
+
+void searchStudent () {
+
+    int searchID ; 
+    bool found = false ; 
+
+    cout << "Enter Student ID to Search : " ;
+    cin >> searchID ; 
+
+    for (int i = 0 ; i < countStudent ; ++i) {
+
+        if (students[i].id == searchID ) {
+
+            cout << "\033[32m" ;
+            cout << "\nStudent Found\n" ;
+            cout << "\033[0m" ;
+
+            cout << "Student ID : " << students[i].id << endl ; 
+            cout << "Student Name : " << students[i].name << endl ; 
+            cout << "Student Age : " << students[i].age << endl ; 
+            cout << "Student Course : " << students[i].course << endl ; 
+
+            found = true ; 
+        }
+    }
+
+    if (found == false ) {
+        cout << "\033[31m" ;
+        cout << "Student Not Found\n" ;
+        cout << "\033[0m" ;
+    }
+}
+
+void updateStudent () {
+
+    int updateID ; 
+    bool found = false ; 
+
+    cout << "Enter Student ID to Update : " ;
+    cin >> updateID ; 
+
+    for (int i = 0 ; i < countStudent ; ++i) {
+
+        if (students[i].id == updateID ) {
+
+            cout << "Enter New Name : " ;
+            cin >> students[i].name ; 
+
+            cout << "Enter New Age : " ;
+            cin >> students[i].age ; 
+
+            cout << "Enter New Course : " ;
+            cin >> students[i].course ; 
+
+            cout << "\033[32m" ;
+            cout << "Student Updated Successfully\n" ;
+            cout << "\033[0m" ;
+
+            found = true ; 
+        }
+    }
+
+    if (found == false ) {
+        cout << "\033[31m" ;
+        cout << "Student Not Found\n" ;
+        cout << "\033[0m" ;
+    }
+}
+
+void deleteStudent () {
+
+    int deleteID ; 
+    bool found = false ; 
+
+    cout << "Enter Student ID to Delete : " ;
+    cin >> deleteID ; 
+
+    for (int i = 0 ; i < countStudent ; ++i) {
+
+        if (students[i].id == deleteID ) {
+
+            for (int j = i ; j < countStudent - 1 ; ++j) {
+
+                students[j] = students[j + 1] ; 
+            }
+
+            countStudent-- ; 
+
+            cout << "\033[32m" ;
+            cout << "Student Deleted Successfully\n" ;
+            cout << "\033[0m" ;
+
+            found = true ; 
+            break ; 
+        }
+    }
+
+    if (found == false ) {
+
+        cout << "\033[31m" ;
+        cout << "Student Not Found\n" ;
+        cout << "\033[0m" ;
+    }
+}
